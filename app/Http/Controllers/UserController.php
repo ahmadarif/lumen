@@ -51,12 +51,12 @@ class UserController extends Controller {
      */
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
+            'email' => 'required|min:20|email',
+            'password' => 'required|min:3'
         ]);
 
         if ($validator->fails()) {
-            return $this->respondWithErrorMessage($validator);
+            return $this->responseWithErrorMessage($validator);
         }
 
         $hasher = app()->make('hash');
