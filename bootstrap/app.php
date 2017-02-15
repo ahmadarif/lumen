@@ -37,7 +37,6 @@ $app->singleton(
 );
 
 $app->withFacades();
-
 $app->withEloquent();
 
 $app->routeMiddleware([
@@ -45,7 +44,7 @@ $app->routeMiddleware([
 ]);
 
 $app->register(App\Providers\AuthServiceProvider::class);
-$app->register(Thedevsaddam\LumenRouteList\LumenRouteListServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../routes/web.php';
