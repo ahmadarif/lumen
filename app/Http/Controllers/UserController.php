@@ -51,7 +51,7 @@ class UserController extends Controller {
      */
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|min:20|email',
+            'email' => 'required|email|min:10',
             'password' => 'required|min:3'
         ]);
 
