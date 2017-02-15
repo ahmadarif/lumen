@@ -6,6 +6,7 @@ use App\Http\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller {
 
@@ -49,6 +50,15 @@ class UserController extends Controller {
      * @return Response
      */
     public function login(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->respondWithErrorMessage($validator);
+        }
+
         $hasher = app()->make('hash');
 
         $email = $request->input('email');
