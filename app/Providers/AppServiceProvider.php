@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
+use Flipbox\LumenGenerator\LumenGeneratorServiceProvider;
 use Illuminate\Support\ServiceProvider;
-use Thedevsaddam\LumenRouteList\LumenRouteListServiceProvider;
-use Wn\Generators\CommandsServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,8 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         if ($this->app->environment() == 'local') {
-            $this->app->register(LumenRouteListServiceProvider::class);
-            $this->app->register(CommandsServiceProvider::class);
+            $this->app->register(LumenGeneratorServiceProvider::class);
         }
     }
 }
